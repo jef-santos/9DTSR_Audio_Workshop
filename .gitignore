@@ -1,0 +1,14 @@
+# Ambientes virtuais
+.venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+quantumvoice.log
+
+# Outros
+.DS_Store
