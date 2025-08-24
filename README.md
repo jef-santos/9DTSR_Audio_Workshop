@@ -7,7 +7,8 @@ protótipo de atendimento por voz para a empresa fictícia
 **QuantumFinance**.\
 O sistema permite que um cliente interaja com a aplicação por **voz**,
 utilizando tecnologias de **Text-to-Speech (TTS)** e **Speech-to-Text
-(STT)**.
+(STT)**, e agora também conta com uma **interface web interativa via
+Streamlit**.
 
 ## Funcionalidades
 
@@ -22,6 +23,10 @@ utilizando tecnologias de **Text-to-Speech (TTS)** e **Speech-to-Text
 -   **Loop de atendimento**, encerrado apenas quando o cliente escolhe
     "Sair".
 -   **Reconhecimento de voz por palavras-chave**, não apenas números.
+-   **Aplicativo Streamlit** para iniciar e controlar a simulação:
+    -   Botão para **iniciar a simulação** (executa o `app.py`).
+    -   Botão para **encerrar a simulação**.
+    -   Painel com **logs em tempo real** (o log é limpo a cada início).
 
 ## Tecnologias Utilizadas
 
@@ -32,18 +37,21 @@ utilizando tecnologias de **Text-to-Speech (TTS)** e **Speech-to-Text
     -   `pygame` para reprodução dos áudios
     -   `pydub` para manipulação de áudio
     -   `Unidecode` para normalização de texto
+    -   `Streamlit` para interface web
 -   **Plataforma**: execução local com ambiente virtual (`venv`).
 
 ## Estrutura do Projeto
 
     voice_app/
-    │── app.py            # Orquestra o atendimento por voz
-    │── tts.py            # Funções de geração de áudio (TTS)
-    │── stt.py            # Funções de transcrição (STT)
-    │── player.py         # Funções para reproduzir áudios
-    │── utils.py          # Funções auxiliares (logs, normalização)
-    │── audios/           # Áudios pré-gerados
-    │── requirements.txt  # Dependências do projeto
+    │── app.py               # Orquestra o atendimento por voz
+    │── tts.py               # Funções de geração de áudio (TTS)
+    │── stt.py               # Funções de transcrição (STT)
+    │── player.py            # Funções para reproduzir áudios
+    │── utils.py             # Funções auxiliares (logs, normalização)
+    │── app_streamlit.py     # Interface web para iniciar/encerrar simulação e visualizar logs
+    │── audios/              # Áudios pré-gerados
+    │── quantumvoice.log     # Arquivo de log (limpo a cada execução no Streamlit)
+    │── requirements.txt     # Dependências do projeto
 
 ## Instalação e Execução
 
@@ -61,14 +69,26 @@ utilizando tecnologias de **Text-to-Speech (TTS)** e **Speech-to-Text
     pip install -r requirements.txt
     ```
 
-3.  **Executar o aplicativo**:
+3.  **Executar o aplicativo de voz (terminal)**:
 
     ``` bash
     python app.py
     ```
 
-4.  **Encerrar**: pressione `CTRL + C` ou escolha a opção "Sair do
-    atendimento".
+4.  **Executar a interface web (Streamlit)**:
+
+    ``` bash
+    streamlit run app_streamlit.py
+    ```
+
+5.  **Controle pelo Streamlit**:
+
+    -   Clique **Iniciar simulação** para rodar o `app.py`.
+    -   Use **Encerrar simulação** para parar.
+    -   O **log** é limpo automaticamente a cada início e exibido no
+        painel.
+    -   O áudio toca pelo sistema local, e a fala é capturada pelo
+        microfone local.
 
 ## Observações Importantes
 
@@ -78,6 +98,8 @@ utilizando tecnologias de **Text-to-Speech (TTS)** e **Speech-to-Text
     do Google Speech Recognition.
 -   Ajuste as palavras-chave em `utils.py` conforme necessário para
     maior precisão no reconhecimento.
+-   O Streamlit **não transmite áudio pelo navegador**: ele apenas
+    controla o app que roda localmente.
 
 ## Autores
 

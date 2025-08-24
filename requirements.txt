@@ -1,0 +1,10 @@
+gTTS
+SpeechRecognition
+pydub
+pygame
+Unidecode
+sounddevice
+soundfile
+numpy
+streamlit 
+streamlit-audiorec
